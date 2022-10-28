@@ -1,4 +1,9 @@
-<header data-add-bg="bg-dark-1" class="header bg-green js-header" data-x="header" data-x-toggle="is-menu-opened">
+<header
+        <?=
+        (session()->get("tab") == "home") ?
+            'data-add-bg="bg-dark-2"':
+            'data-add-bg="bg-white"'?>
+        class="header bg-green js-header" data-x="header" data-x-toggle="is-menu-opened">
     <div data-anim="fade" class="header__container px-30 sm:px-20">
         <div class="row justify-between items-center">
 
@@ -17,8 +22,11 @@
                             <div class="mobile-bg js-mobile-bg"></div>
 
                             <div class="menu js-navList">
-                                <ul class="menu__nav text-white -is-active">
-
+                                <ul class="menu__nav
+                                <?=
+                                (session()->get("tab") != "home") ?
+                                    "text-dark-1" : "text-white" ?>
+                                    -is-active">
                                     <li>
                                         <a data-barba href="<?= base_url() ?>">
                                             <span class="mr-10">Home</span>
@@ -50,9 +58,23 @@
                 <div class="d-flex items-center">
                     <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
                         <a href="<?= base_url() ?>/login"
-                           class="button px-30 fw-400 text-14 -white bg-white h-50 text-dark-1">Sign In</a>
+                           class="button px-30 fw-400 text-14
+                           <?=
+                           (session()->get("tab") == "home") ?
+                               "-white bg-white h-50 text-dark-1" :
+                               "-blue-1 bg-blue-1 h-50 text-white"
+                           ?>
+                           "
+                        >Sign In</a>
                         <a href="<?= base_url() ?>/signup"
-                           class="button px-30 fw-400 text-14 border-white -outline-white h-50 text-white ml-20">Register</a>
+                           class="button px-30 fw-400 text-14
+                            <?=
+                           (session()->get("tab") == "home") ?
+                               "border-white -outline-white h-50 text-white ml-20" :
+                               "-outline-blue-1 h-50 text-blue-1 ml-20"
+                           ?>
+                            "
+                        >Register</a>
                         <?php if (session()->has("logged_user")): ?>
                             <div class="ml-20 text-white">
                                 <a data-x-click="lang"
