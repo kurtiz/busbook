@@ -14,4 +14,8 @@ class ActiveSession
             exit();
         }
     }
+
+    public function admin_url(){
+        return "http://localhost/busbook-admin";
+    }
 }

@@ -12718,3 +12718,21 @@ table.table-5 td {
     height: 100%;
     max-height: 700px
 }
+
+ul.pagination li {
+    display: inline-block;
+    margin: 10px 0px;
+}
+ul.pagination li a {
+    color: #14396A !important;
+    font-size: 14px;
+    padding: 10px 25px;
+    border-radius: 6px;
+    background: #EEEEEE;
+
+}
+ul.pagination li a:hover {
+    color: #14396A !important;
+    background: #468CCF;
+    background: linear-gradient(to top, #468CCF, #7ED0EE);
+}
