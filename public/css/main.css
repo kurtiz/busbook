@@ -12736,3 +12736,23 @@ ul.pagination li a:hover {
     background: #468CCF;
     background: linear-gradient(to top, #468CCF, #7ED0EE);
 }
+
+.alert-success{
+    background-color: rgba(22, 238, 32, 0.4);
+    padding: 5px 0 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.alert-success a{
+    text-decoration: underline;
+}
+
+.alert-error{
+    background-color: rgba(238, 22, 22, 0.4);
+    padding: 5px 0 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.alert-error a{
+    text-decoration: underline;
+}
