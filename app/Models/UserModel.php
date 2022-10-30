@@ -18,4 +18,17 @@ class UserModel extends Model
             return false;
         }
     }
+
+    public function verifyUser($email){
+        $builder = $this->db->table($this->tbl);
+        $builder->where("user_email", $email);
+        $builder->select();
+        $result = $builder->get();
+
+        if ($result->resultID->num_rows == 1) {
+            return $result->getRowObject();
+        } else {
+            return false;
+        }
+    }
 }
