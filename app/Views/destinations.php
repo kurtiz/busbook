@@ -42,18 +42,13 @@
     <section class="layout-pt-md layout-pb-md mt-70">
         <div class="container">
             <div class="row y-gap-20 justify-between items-end">
-                <div class="col-md-6">
+                <div class="col-auto">
                     <div class="sectionTitle -md">
                         <h2 class="sectionTitle__title">Browse through the available trips</h2>
                         <p class=" sectionTitle__text mt-5 sm:mt-0">Find your trip and book with us</p>
                     </div>
                 </div>
-                <div class="col-m-4">
-                    <div class="form-input ">
-                        <input type="text" required>
-                        <label class="lh-1 text-16 text-light-1">Search</label>
-                    </div>
-                </div>
+
             </div>
 
             <div class="row y-gap-30 pt-40 sm:pt-20">
@@ -87,7 +82,7 @@
                                     </div>
 
                                     <div class="rentalCard__content mt-10">
-                                        <div class="text-14 text-light-1 lh-14 mb-5"><?= $tickets[$i]["departure_date"] ?> - <?= $tickets[$i]["departure_time"] ?></div>
+                                        <div class="text-14 text-light-1 lh-14 mb-5"><?= $tickets[$i]["departure_date"] ?>   ➡️ <?= $tickets[$i]["departure_time"] ?></div>
                                         <h4 class="rentalCard__title text-dark-1 text-18 lh-16 fw-500">
                                             <span><?= $from[$i] ?>   ➡️ <?= $to[$i] ?></span>
                                         </h4>

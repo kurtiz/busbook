@@ -18,6 +18,7 @@ class Destinations extends Controller
     public $busesModel;
     public $destinationsModel;
     public $activeSession;
+    public $data;
 
     public function __construct() {
         $this->ticketsModel = new TicketsModel();
@@ -30,23 +31,32 @@ class Destinations extends Controller
 
     public function index()
     {
-        $ticketsPagerModel = new TicketsPagerModel();
-        $data['tickets'] = $ticketsPagerModel->paginate(20);
-        $data['pager'] = $ticketsPagerModel->pager;
-        $data["adminUrl"] = $this->activeSession->admin_url();
-
-        foreach ($data['tickets'] as $ticket) {
-            $data['from'][] = $this->destinationsModel->getDestination($ticket['destination_id'])->destination;
-            $data['to'][] = $this->destinationsModel->getDestination($ticket['from_destination_id'])->destination;
-            $data['drivers'][] = $this->driversModel->getDriver($ticket['driver_id'])->driver_name;
-            $data['buses'][] = $this->busesModel->getBus($ticket['bus_id'])->bus_model;
-        }
+        $this->pullTicketData();
 
         session()->set("tab", "destinations");
-        return view('destinations', $data);
+        return view('destinations', $this->data);
     }
 
-    public function search(){
-//        $
+    public function search($token){
+        $this->pullTicketData();
+        return json_encode($this->data);
+    }
+
+    /**
+     * @return void
+     */
+    private function pullTicketData(): void
+    {
+        $ticketsPagerModel = new TicketsPagerModel();
+        $this->data['tickets'] = $ticketsPagerModel->like([])->paginate(20);
+        $this->data['pager'] = $ticketsPagerModel->pager;
+        $this->data["adminUrl"] = $this->activeSession->admin_url();
+
+        foreach ($this->data['tickets'] as $ticket) {
+            $this->data['from'][] = $this->destinationsModel->getDestination($ticket['destination_id'])->destination;
+            $this->data['to'][] = $this->destinationsModel->getDestination($ticket['from_destination_id'])->destination;
+            $this->data['drivers'][] = $this->driversModel->getDriver($ticket['driver_id'])->driver_name;
+            $this->data['buses'][] = $this->busesModel->getBus($ticket['bus_id'])->bus_model;
+        }
     }
 }
