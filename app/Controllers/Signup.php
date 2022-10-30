@@ -16,6 +16,9 @@ class Signup extends BaseController
     public function index()
     {
         session()->set("tab", "signup");
+        if(session()->has("logged_user")) {
+            return redirect()->to(base_url().'/destinations');
+        }
 
         if ($this->request->getMethod() == "post") {
             $fields = [
@@ -29,7 +32,7 @@ class Signup extends BaseController
                 "user_passkey" => hash(
                     "gost-crypto",
                     hash ("md5", $this->request->getVar("password", FILTER_SANITIZE_STRING)) .
-                    hash("md4", $this->request->getVar("lastname", FILTER_SANITIZE_STRING))
+                    hash("md4", $this->request->getVar("password", FILTER_SANITIZE_STRING))
                 )
             ];
 

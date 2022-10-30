@@ -57,6 +57,7 @@
             <div class="col-auto">
                 <div class="d-flex items-center">
                     <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
+                        <?php if (!session()->has("logged_user")): ?>
                         <a href="<?= base_url() ?>/login"
                            class="button px-30 fw-400 text-14
                            <?=
@@ -75,8 +76,14 @@
                            ?>
                             "
                         >Register</a>
-                        <?php if (session()->has("logged_user")): ?>
-                            <div class="ml-20 text-white">
+                        <?php else: ?>
+                            <div class="ml-20
+                            <?=
+                            (session()->get("tab") == "home") ?
+                                "text-white":
+                                "text-dark-1"?>
+
+                            ">
                                 <a data-x-click="lang"
                                    href="javascript:void(0)"
                                    class="d-flex items-center icon-user text-inherit text-22">
