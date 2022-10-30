@@ -57,7 +57,7 @@
                         <?php for ($i = 0; $i < count($tickets); $i++): ?>
                             <div class="col-xl-3 col-lg-3 col-sm-6">
 
-                                <a href="javascript:void()" class="rentalCard -type-1 rounded-4 ">
+                                <a href="<?=base_url()?>/destinations/view/<?=$tickets[$i]['ticket_id']?>" class="rentalCard -type-1 rounded-4 ">
                                     <div class="rentalCard__image">
 
                                         <div class="cardImage ratio ratio-1:1">

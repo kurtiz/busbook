@@ -39,6 +39,11 @@ class Signup extends BaseController
             $addedUser = $this->userModel->createUser($fields);
 
             if($addedUser){
+                if (session()->has("from_url")) {
+                    $to = session()->get("from_url");
+                    session()->remove("from_url");
+                    return redirect()->to($to);
+                }
                 session()->setTempdata("msg", "success", 2);
             } else {
                 session()->setTempdata("msg", "error", 2);
